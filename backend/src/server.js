@@ -1,4 +1,4 @@
-import 'dotenv/config';
+﻿import 'dotenv/config';
 import { randomUUID } from 'node:crypto';
 import cors from 'cors';
 import express from 'express';
@@ -6,6 +6,13 @@ import { rateLimit } from 'express-rate-limit';
 import helmet from 'helmet';
 import { createDatabase, getRecentGenerations, saveGeneration } from './database.js';
 import { buildMessages } from './prompts.js';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import fs from 'node:fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDist = path.resolve(__dirname, '../../frontend/dist');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -186,3 +193,4 @@ try {
   console.error('Server startup failed:', error);
   process.exitCode = 1;
 }
+

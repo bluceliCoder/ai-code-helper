@@ -1,0 +1,22 @@
+﻿services:
+  - type: web
+    name: ai-code-helper
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: CORS_ORIGIN
+        value: *
+      - key: VITE_API_BASE_URL
+        value: /api
+      - key: DOUBAO_API_KEY
+        sync: false
+      - key: DOUBAO_MODEL_ID
+        sync: false
+      - key: DOUBAO_BASE_URL
+        value: https://ark.cn-beijing.volces.com/api/v3
